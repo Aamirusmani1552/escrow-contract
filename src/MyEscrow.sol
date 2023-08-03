@@ -135,7 +135,8 @@ contract MyEscrow is IEscrow, ReentrancyGuard {
 
         // after deducting the arbitrer fee and buyerAward, if the rest of the token balance is less than the price(after deducting the arbitrer fee and buyerAward) then it should revert
         // not fair with the seller
-        if (tokenBalance < amountToSeller) { // check might be rudndant
+        // check might be redundant in most cases, but if some type of vulnerablity exists in the contract that extract some tokens from the contract then it will ensure that the seller gets the correct amount otherwise it will be reverted
+        if (tokenBalance < amountToSeller) {
             revert Escrow__TokenBalanceNotCorrect(tokenBalance, i_price - i_arbiterFee - buyerAward);
         }
 
