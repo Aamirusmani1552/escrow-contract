@@ -16,6 +16,7 @@ interface IEscrow {
     error Escrow__TokenZeroAddress();
     error Escrow__BuyerZeroAddress();
     error Escrow__SellerZeroAddress();
+    error Escrow__TokenBalanceNotCorrect(uint256 balance, uint256 price);
 
     event Confirmed(address indexed seller);
     event Disputed(address indexed disputer);
